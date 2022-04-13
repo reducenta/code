@@ -1,0 +1,1 @@
+<p>Samples for CMS 1C-Bitrix</p>

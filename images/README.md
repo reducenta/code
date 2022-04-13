@@ -1,4 +1,4 @@
 <p>
 Image manipulation classes<br>
-Namespace is wrong
+Namespace is sample
 </p>

@@ -1,4 +1,3 @@
 <p>
-Others<br>
-Namespace is wrong
+Various
 </p>
