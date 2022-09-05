@@ -1,0 +1,77 @@
+.pvz_change_window {
+  position: relative;
+  display: none;
+}
+
+.pvz_change_window #map {
+  width: 1000px;
+  height: 500px;
+}
+
+.pvz_change_window .city_name {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 410;
+  width: 400px;
+  background: white;
+}
+
+.pvz_change_window .city_name input {
+  border-radius: 0;
+}
+
+.pvz_change_window .search_result {
+  display: none;
+  padding-bottom: 8px;
+}
+
+.pvz_change_window .search_result .city_item {
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0 14px 6px 14px;
+}
+
+.pvz_change_window .search_result .city_item:hover, .pvz_change_window .search_result .city_item .active {
+  background: #ef9016;
+}
+
+.pvz_change_window .search_result .city_item:hover .city, .pvz_change_window .search_result .city_item:hover .region, .pvz_change_window .search_result .city_item .active .city, .pvz_change_window .search_result .city_item .active .region {
+  color: white;
+}
+
+.pvz_change_window .search_result .city_item.blank {
+  display: none;
+}
+
+.pvz_change_window .search_result .city_item .region {
+  line-height: 10px;
+  color: #c7c7c7;
+  font-size: 12px;
+}
+
+.cdek_pvz_popup {
+  z-index: 500;
+}
+
+.cdek_pvz_popup .leaflet-popup-content > div {
+  margin-top: 10px;
+}
+
+.cdek_pvz_popup .leaflet-popup-content > div:nth-child(1) {
+  margin: 0;
+}
+
+.cdek_pvz_popup .leaflet-popup-content > div i {
+  margin-right: 10px;
+}
+
+.cdek_pvz_popup .leaflet-popup-content > div.check_button {
+  background: #ef9016;
+  color: white;
+  text-align: center;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  display: inline-block;
+}
