@@ -5,7 +5,6 @@ use Bitrix\Main\Loader;
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Application;
 use Bitrix\Main\IO\Directory;
-use \Bitrix\Main\IO\File;
 
 Loc::loadMessages(__FILE__);
 
@@ -42,11 +41,6 @@ class andreev_dev_feedbackform extends CModule
 
         return false;
     }
-
-    /**
-     * @return bool|void
-     * @throws \Bitrix\Main\ArgumentOutOfRangeException
-     */
 
     public static function getHlID()
     {
@@ -179,9 +173,6 @@ class andreev_dev_feedbackform extends CModule
         return false;
     }
 
-    /**
-     * @return bool|void
-     */
     public function InstallFiles()
     {
         CopyDirFiles(
@@ -194,27 +185,16 @@ class andreev_dev_feedbackform extends CModule
         return false;
     }
 
-    /**
-     * @return bool
-     * @throws \Bitrix\Main\ArgumentOutOfRangeException
-     */
     public function InstallDB()
     {
         return false;
     }
 
-    /**
-     * @return bool|void
-     */
     public function InstallEvents()
     {
         return false;
     }
 
-    /**
-     * @return bool|void
-     * @throws \Bitrix\Main\ArgumentNullException
-     */
     public function DoUninstall()
     {
         global $APPLICATION;
@@ -232,9 +212,6 @@ class andreev_dev_feedbackform extends CModule
         return false;
     }
 
-    /**
-     * @return bool|void
-     */
     public function UnInstallFiles()
     {
         Directory::deleteDirectory(
@@ -244,10 +221,6 @@ class andreev_dev_feedbackform extends CModule
         return false;
     }
 
-    /**
-     * @return bool|void
-     * @throws \Bitrix\Main\ArgumentNullException
-     */
     public function UnInstallDB()
     {
         try{
@@ -259,9 +232,6 @@ class andreev_dev_feedbackform extends CModule
         return false;
     }
 
-    /**
-     * @return bool|void
-     */
     public function UnInstallEvents()
     {
         return false;
