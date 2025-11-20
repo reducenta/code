@@ -17,13 +17,21 @@
 </ol>
 
 <h2>Примеры curl запросов</h2>
-<p>Получить слоты</p>
+
+<p>Получить слоты</br>
 <code>curl "https://some-host.com/api/slots/availability"</code>
-<p>Создать холд в слоте id=1 с ключем идемподентности key001</p>
+</p>
+
+<p>Создать холд в слоте id=1 с ключем идемподентности key001</br>
 <code>>curl -d '{"status":"held"}' -X POST --header "Idempotency-Key: key001" "https://some-host.com/api/slots/1/hold"</code>
-<p>>Подтвердить холд с id=1</p>
+</p>
+
+<p>Подтвердить холд с id=1</br>
 <code>curl -X POST "https://some-host.com/api/holds/1/confirm"</code>
-<p>Отменить холд с id=1</p>
+</p>
+
+<p>Отменить холд с id=1</br>
 <code>>curl -X DELETE "https://some-host.com/api/holds/1</code>
+</p>
 
 
