@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: Catalog API
+  version: 1.1.0
+  description: REST API для каталога "Одежда" с ценами офферов
+servers:
+  - url: http://localhost
+    description: Локальный сервер
+paths:
+  /api/categories/{iblockId}:
+    get:
+      summary: Получить список категорий инфоблока
+      tags:
+        - Категории
+      parameters:
+        - name: iblockId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID инфоблока
+      responses:
+        '200':
+          description: Список категорий
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+              example:
+                - ID: 1
+                  NAME: "Мужская одежда"
+                  DETAIL_PAGE_URL: "/catalog/mens/"
+                  PICTURE: "/upload/mens.jpg"
+                  CHILDREN:
+                    - ID: 2
+                      NAME: "Рубашки"
+                      DETAIL_PAGE_URL: "/catalog/mens/shirts/"
+                      PICTURE: "/upload/shirts.jpg"
+                      CHILDREN: []
+
+  /api/products/{iblockId}/{categoryId}:
+    get:
+      summary: Получить список товаров в категории
+      tags:
+        - Товары
+      parameters:
+        - name: iblockId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Список товаров
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductListItem'
+              example:
+                - ID: 101
+                  NAME: "Рубашка Slim Fit"
+                  DETAIL_PAGE_URL: "/catalog/mens/shirts/slim-fit/"
+                  PREVIEW_PICTURE: "/upload/shirt101.jpg"
+                  PRICE_FROM: 1999.99
+
+  /api/product/{iblockId}/{productId}:
+    get:
+      summary: Получить детальный товар
+      tags:
+        - Товары
+      parameters:
+        - name: iblockId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Детальный товар
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+              example:
+                ID: 101
+                NAME: "Рубашка Slim Fit"
+                DETAIL_PAGE_URL: "/catalog/mens/shirts/slim-fit/"
+                GALLERY:
+                  - "/upload/shirt101.jpg"
+                  - "/upload/shirt101-2.jpg"
+                CHARACTERISTICS:
+                  BRAND: "BrandName"
+                  MANUFACTURER: "FactoryName"
+                  MATERIAL: "Хлопок"
+                OFFERS:
+                  - ID: 201
+                    NAME: "Рубашка Slim Fit, Синий, S"
+                    ARTICUL: "RF-SLIM-BL-S"
+                    COLOR: "Синий"
+                    SIZE: "S"
+                    PRICE_FROM: 1999.99
+                  - ID: 202
+                    NAME: "Рубашка Slim Fit, Синий, M"
+                    ARTICUL: "RF-SLIM-BL-M"
+                    COLOR: "Синий"
+                    SIZE: "M"
+                    PRICE_FROM: 2099.99
+
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        ID:
+          type: integer
+        NAME:
+          type: string
+        DETAIL_PAGE_URL:
+          type: string
+        PICTURE:
+          type: string
+        CHILDREN:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+
+    ProductListItem:
+      type: object
+      properties:
+        ID:
+          type: integer
+        NAME:
+          type: string
+        DETAIL_PAGE_URL:
+          type: string
+        PREVIEW_PICTURE:
+          type: string
+        PRICE_FROM:
+          type: number
+
+    ProductDetail:
+      type: object
+      properties:
+        ID:
+          type: integer
+        NAME:
+          type: string
+        DETAIL_PAGE_URL:
+          type: string
+        GALLERY:
+          type: array
+          items:
+            type: string
+        CHARACTERISTICS:
+          type: object
+          properties:
+            BRAND:
+              type: string
+            MANUFACTURER:
+              type: string
+            MATERIAL:
+              type: string
+        OFFERS:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+
+    Offer:
+      type: object
+      properties:
+        ID:
+          type: integer
+        NAME:
+          type: string
+        ARTICUL:
+          type: string
+        COLOR:
+          type: string
+        SIZE:
+          type: string
+        PRICE_FROM:
+          type: number
